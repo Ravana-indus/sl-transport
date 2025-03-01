@@ -1,4 +1,3 @@
-frappe
 pypdf
 html2text
 python-dateutil
