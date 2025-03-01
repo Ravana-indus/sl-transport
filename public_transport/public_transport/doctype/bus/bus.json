@@ -1,0 +1,99 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "BUS-.####",
+ "creation": "2024-02-27 10:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "internal_bus_id",
+  "registration_plate",
+  "gps_device_id",
+  "model",
+  "capacity",
+  "registration_audit"
+ ],
+ "fields": [
+  {
+   "fieldname": "internal_bus_id",
+   "fieldtype": "Data",
+   "label": "Internal Bus ID",
+   "read_only": 1,
+   "reqd": 1,
+   "unique": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "in_global_search": 1,
+   "description": "Immutable system-generated unique identifier for each bus."
+  },
+  {
+   "fieldname": "registration_plate",
+   "fieldtype": "Data",
+   "label": "Registration Plate",
+   "reqd": 1,
+   "unique": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "in_global_search": 1,
+   "description": "Editable field for the bus's registration number."
+  },
+  {
+   "fieldname": "gps_device_id",
+   "fieldtype": "Data",
+   "label": "GPS Device ID",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "in_global_search": 1,
+   "description": "Unique identifier for the bus's GPS device."
+  },
+  {
+   "fieldname": "model",
+   "fieldtype": "Data",
+   "label": "Model",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "in_global_search": 1,
+   "description": "Bus model or description."
+  },
+  {
+   "fieldname": "capacity",
+   "fieldtype": "Int",
+   "label": "Capacity",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "description": "Seating capacity of the bus."
+  },
+  {
+   "fieldname": "registration_audit",
+   "fieldtype": "Table",
+   "label": "Registration Audit",
+   "options": "Bus Registration Audit",
+   "description": "Logs changes to the registration plate (audit trail)."
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-02-27 10:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Public Transport",
+ "name": "Bus",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "report": 1,
+   "share": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

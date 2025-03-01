@@ -1,0 +1,32 @@
+{
+  "roles": [
+    {
+      "name": "Bus Operator",
+      "desk_access": 1,
+      "two_factor_auth": 0,
+      "restrict_to_domain": "",
+      "search_fields": "bus,route"
+    },
+    {
+      "name": "Bus Conductor",
+      "desk_access": 1,
+      "two_factor_auth": 0,
+      "restrict_to_domain": "",
+      "search_fields": "bus,route,booking"
+    },
+    {
+      "name": "Booking Agent",
+      "desk_access": 1,
+      "two_factor_auth": 1,
+      "restrict_to_domain": "",
+      "search_fields": "booking,payment"
+    },
+    {
+      "name": "Regular User",
+      "desk_access": 0,
+      "two_factor_auth": 0,
+      "restrict_to_domain": "",
+      "search_fields": "booking"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+*.py[cod]
+__pycache__
+.DS_Store
+*.egg-info
+dist/
+*.swp
+*.swo
+node_modules
+.benchmarks
+site_config.json
+*debug.log
+.ipynb_checkpoints
+.pytest_cache
+.coverage
+htmlcov
+.vscode
+.idea

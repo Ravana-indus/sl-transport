@@ -1,0 +1,89 @@
+{
+    "extends": "Public Transport",
+    "for_user": "",
+    "hidden": 0,
+    "icon": "user-check",
+    "idx": 0,
+    "is_default": 0,
+    "is_standard": 1,
+    "label": "Booking Agent Dashboard",
+    "links": [
+        {
+            "dependencies": "",
+            "hidden": 0,
+            "is_query_report": 0,
+            "label": "Bookings Management",
+            "link_type": "DocType",
+            "onboard": 0,
+            "type": "Card Break"
+        },
+        {
+            "dependencies": "",
+            "hidden": 0,
+            "is_query_report": 0,
+            "label": "New Booking",
+            "link_to": "Booking",
+            "link_type": "DocType",
+            "onboard": 1,
+            "type": "Link"
+        },
+        {
+            "dependencies": "",
+            "hidden": 0,
+            "is_query_report": 0,
+            "label": "Bus Trips",
+            "link_to": "Bus Trip",
+            "link_type": "DocType",
+            "onboard": 0,
+            "type": "Link"
+        },
+        {
+            "dependencies": "",
+            "hidden": 0,
+            "is_query_report": 0,
+            "label": "Payments",
+            "link_type": "DocType",
+            "onboard": 0,
+            "type": "Card Break"
+        },
+        {
+            "dependencies": "",
+            "hidden": 0,
+            "is_query_report": 0,
+            "label": "Payment",
+            "link_to": "Payment",
+            "link_type": "DocType",
+            "onboard": 0,
+            "type": "Link"
+        },
+        {
+            "dependencies": "",
+            "hidden": 0,
+            "is_query_report": 0,
+            "label": "Commission Reports",
+            "link_type": "DocType",
+            "onboard": 0,
+            "type": "Card Break"
+        },
+        {
+            "dependencies": "",
+            "hidden": 0,
+            "is_query_report": 0,
+            "label": "Agent Payout",
+            "link_to": "Agent Payout",
+            "link_type": "DocType",
+            "onboard": 0,
+            "type": "Link"
+        }
+    ],
+    "module": "Public Transport",
+    "name": "Booking Agent Dashboard",
+    "owner": "Administrator",
+    "parent_page": "",
+    "public": 1,
+    "roles": [
+        {
+            "role": "Booking Agent"
+        }
+    ]
+}

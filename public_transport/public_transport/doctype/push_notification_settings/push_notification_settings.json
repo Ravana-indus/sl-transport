@@ -1,0 +1,117 @@
+{
+ "name": "Push Notification Settings",
+ "owner": "Administrator",
+ "creation": "2024-02-27 10:00:00.000000",
+ "modified": "2024-02-27 10:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Public Transport",
+ "is_single": 1,
+ "doctype": "DocType",
+ "fields": [
+  {
+   "fieldname": "enabled",
+   "fieldtype": "Check",
+   "label": "Enable Push Notifications",
+   "default": 0
+  },
+  {
+   "fieldname": "provider",
+   "fieldtype": "Select",
+   "label": "Notification Provider",
+   "options": "Firebase\nOneSignal\nCustom",
+   "default": "Firebase",
+   "reqd": 1
+  },
+  {
+   "fieldname": "firebase_settings_section",
+   "fieldtype": "Section Break",
+   "label": "Firebase Settings",
+   "depends_on": "eval:doc.provider=='Firebase'"
+  },
+  {
+   "fieldname": "firebase_server_key",
+   "fieldtype": "Password",
+   "label": "Firebase Server Key",
+   "depends_on": "eval:doc.provider=='Firebase'",
+   "mandatory_depends_on": "eval:doc.provider=='Firebase'"
+  },
+  {
+   "fieldname": "firebase_project_id",
+   "fieldtype": "Data",
+   "label": "Firebase Project ID",
+   "depends_on": "eval:doc.provider=='Firebase'",
+   "mandatory_depends_on": "eval:doc.provider=='Firebase'"
+  },
+  {
+   "fieldname": "onesignal_settings_section",
+   "fieldtype": "Section Break",
+   "label": "OneSignal Settings",
+   "depends_on": "eval:doc.provider=='OneSignal'"
+  },
+  {
+   "fieldname": "onesignal_app_id",
+   "fieldtype": "Data",
+   "label": "OneSignal App ID",
+   "depends_on": "eval:doc.provider=='OneSignal'",
+   "mandatory_depends_on": "eval:doc.provider=='OneSignal'"
+  },
+  {
+   "fieldname": "onesignal_rest_api_key",
+   "fieldtype": "Password",
+   "label": "OneSignal REST API Key",
+   "depends_on": "eval:doc.provider=='OneSignal'",
+   "mandatory_depends_on": "eval:doc.provider=='OneSignal'"
+  },
+  {
+   "fieldname": "custom_settings_section",
+   "fieldtype": "Section Break",
+   "label": "Custom Provider Settings",
+   "depends_on": "eval:doc.provider=='Custom'"
+  },
+  {
+   "fieldname": "custom_endpoint",
+   "fieldtype": "Data",
+   "label": "Custom API Endpoint",
+   "depends_on": "eval:doc.provider=='Custom'",
+   "mandatory_depends_on": "eval:doc.provider=='Custom'"
+  },
+  {
+   "fieldname": "custom_api_key",
+   "fieldtype": "Password",
+   "label": "Custom API Key",
+   "depends_on": "eval:doc.provider=='Custom'",
+   "mandatory_depends_on": "eval:doc.provider=='Custom'"
+  },
+  {
+   "fieldname": "notification_settings_section",
+   "fieldtype": "Section Break",
+   "label": "Notification Settings"
+  },
+  {
+   "fieldname": "notification_icon",
+   "fieldtype": "Attach Image",
+   "label": "Default Notification Icon"
+  },
+  {
+   "fieldname": "sound_enabled",
+   "fieldtype": "Check",
+   "label": "Enable Notification Sound",
+   "default": 1
+  },
+  {
+   "fieldname": "vibration_enabled",
+   "fieldtype": "Check",
+   "label": "Enable Vibration",
+   "default": 1
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1
+  }
+ ]
+}

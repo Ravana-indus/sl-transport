@@ -1,0 +1,47 @@
+{% extends "templates/emails/standard.html" %}
+
+{% block content %}
+<div style="padding: 15px; background-color: {% if alert.severity == 'Critical' %}#ff4b4b{% elif alert.severity == 'High' %}#ffa726{% elif alert.severity == 'Medium' %}#ffeb3b{% else %}#4caf50{% endif %}; margin-bottom: 20px; border-radius: 4px; color: {% if alert.severity in ['Critical', 'High'] %}white{% else %}black{% endif %};">
+    <h2 style="margin: 0;">{{ alert.alert_type }}</h2>
+    <p style="margin: 5px 0;">Severity: {{ alert.severity }}</p>
+</div>
+
+<div style="margin-bottom: 20px;">
+    <h3>Dear {{ passenger.name }},</h3>
+    <p>{{ alert.alert_message }}</p>
+</div>
+
+<div style="margin-bottom: 20px;">
+    <h4>Affected Areas:</h4>
+    <p>{{ alert.affected_areas }}</p>
+</div>
+
+<div style="margin-bottom: 20px;">
+    <h4>Duration:</h4>
+    <p>From: {{ alert.start_time.strftime('%Y-%m-%d %H:%M') }}</p>
+    <p>To: {{ alert.end_time.strftime('%Y-%m-%d %H:%M') }}</p>
+</div>
+
+{% if alert.action_required %}
+<div style="margin-bottom: 20px; padding: 15px; background-color: #f5f5f5; border-radius: 4px;">
+    <h4>Action Required:</h4>
+    <p>{{ alert.action_required }}</p>
+</div>
+{% endif %}
+
+{% if alert.affected_routes %}
+<div style="margin-bottom: 20px;">
+    <h4>Affected Routes:</h4>
+    <ul>
+    {% for route in alert.affected_routes %}
+        <li>{{ frappe.get_value('Route', route.route, 'route_name') }}</li>
+    {% endfor %}
+    </ul>
+</div>
+{% endif %}
+
+<div style="margin-top: 30px; font-size: 12px; color: #666;">
+    <p>For real-time updates, please visit our website or use our mobile app.</p>
+    <p>If you need immediate assistance, please contact our support team.</p>
+</div>
+{% endblock %}

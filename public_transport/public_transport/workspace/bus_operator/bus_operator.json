@@ -1,0 +1,70 @@
+{
+    "extends": "Public Transport",
+    "for_user": "",
+    "hidden": 0,
+    "icon": "bus",
+    "idx": 0,
+    "is_default": 0,
+    "is_standard": 1,
+    "label": "Bus Operator Dashboard",
+    "links": [
+        {
+            "dependencies": "",
+            "hidden": 0,
+            "is_query_report": 0,
+            "label": "Bus Operations",
+            "link_type": "DocType",
+            "onboard": 0,
+            "type": "Card Break"
+        },
+        {
+            "dependencies": "",
+            "hidden": 0,
+            "is_query_report": 0,
+            "label": "Bus",
+            "link_to": "Bus",
+            "link_type": "DocType",
+            "onboard": 0,
+            "type": "Link"
+        },
+        {
+            "dependencies": "",
+            "hidden": 0,
+            "is_query_report": 0,
+            "label": "Bus Trip",
+            "link_to": "Bus Trip",
+            "link_type": "DocType",
+            "onboard": 0,
+            "type": "Link"
+        },
+        {
+            "dependencies": "",
+            "hidden": 0,
+            "is_query_report": 0,
+            "label": "Bookings",
+            "link_type": "DocType",
+            "onboard": 0,
+            "type": "Card Break"
+        },
+        {
+            "dependencies": "",
+            "hidden": 0,
+            "is_query_report": 0,
+            "label": "Booking",
+            "link_to": "Booking",
+            "link_type": "DocType",
+            "onboard": 0,
+            "type": "Link"
+        }
+    ],
+    "module": "Public Transport",
+    "name": "Bus Operator Dashboard",
+    "owner": "Administrator",
+    "parent_page": "",
+    "public": 1,
+    "roles": [
+        {
+            "role": "Bus Operator"
+        }
+    ]
+}

@@ -1,0 +1,48 @@
+.stop-info {
+    padding: 10px;
+    max-width: 250px;
+}
+
+.stop-info.deviation {
+    border-left: 3px solid #FF4B4B;
+}
+
+.deviation-badge {
+    background-color: #FF4B4B;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    display: inline-block;
+    font-size: 12px;
+    margin: 5px 0;
+}
+
+.facilities {
+    margin-top: 10px;
+}
+
+.facilities ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 5px 0;
+}
+
+.facilities li {
+    font-size: 13px;
+    color: #666;
+}
+
+.deviation-info {
+    padding: 15px;
+    max-width: 300px;
+}
+
+.deviation-info h5 {
+    color: #FF4B4B;
+    margin-bottom: 10px;
+}
+
+.map-controls .btn.active {
+    background-color: #4A90E2;
+    color: white;
+}

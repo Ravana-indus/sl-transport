@@ -1,0 +1,151 @@
+{
+ "actions": [],
+ "autoname": "TRIP-.####",
+ "creation": "2024-02-27 10:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "trip_id",
+  "bus",
+  "route",
+  "bus_operator",
+  "bus_type",
+  "long_trip_limited_seat",
+  "departure_time",
+  "arrival_time",
+  "seat_map_layout"
+ ],
+ "fields": [
+  {
+   "fieldname": "trip_id",
+   "fieldtype": "Data",
+   "label": "Trip ID",
+   "read_only": 1,
+   "reqd": 1,
+   "unique": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "in_global_search": 1,
+   "description": "Unique identifier for the bus trip."
+  },
+  {
+   "fieldname": "bus",
+   "fieldtype": "Link",
+   "options": "Bus",
+   "label": "Bus",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "in_global_search": 1,
+   "description": "Reference to the Bus used for this trip."
+  },
+  {
+   "fieldname": "route",
+   "fieldtype": "Data",
+   "label": "Route",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "in_global_search": 1,
+   "description": "The journey route for the trip."
+  },
+  {
+   "fieldname": "bus_operator",
+   "fieldtype": "Link",
+   "options": "User",
+   "label": "Bus Operator",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "in_global_search": 1,
+   "description": "The operator responsible for the trip."
+  },
+  {
+   "fieldname": "bus_type",
+   "fieldtype": "Select",
+   "options": "Semi Luxury\nLuxury\nHighway",
+   "label": "Bus Type",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "in_global_search": 1,
+   "description": "The category of bus service."
+  },
+  {
+   "fieldname": "long_trip_limited_seat",
+   "fieldtype": "Check",
+   "label": "Long Trip - Limited Seat",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "in_global_search": 1,
+   "description": "Toggle to enable a specialized seat map for long trips."
+  },
+  {
+   "fieldname": "departure_time",
+   "fieldtype": "Datetime",
+   "label": "Departure Time",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "in_global_search": 1,
+   "description": "Scheduled departure date and time."
+  },
+  {
+   "fieldname": "arrival_time",
+   "fieldtype": "Datetime",
+   "label": "Arrival Time",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "in_global_search": 1,
+   "description": "Scheduled arrival date and time."
+  },
+  {
+   "fieldname": "seat_map_layout",
+   "fieldtype": "Table",
+   "options": "Seat Map",
+   "label": "Seat Map Layout",
+   "mandatory_depends_on": "eval:doc.long_trip_limited_seat==1",
+   "description": "Contains the seating layout details if Long Trip is enabled."
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-02-27 10:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Public Transport",
+ "name": "Bus Trip",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1
+  },
+  {
+   "role": "Bus Operator",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "submit": 1
+  },
+  {
+   "role": "Bus Conductor",
+   "read": 1,
+   "write": 1
+  },
+  {
+   "role": "Booking Agent",
+   "read": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

@@ -1,0 +1,57 @@
+{
+ "actions": [],
+ "autoname": "field:audit_id",
+ "creation": "2024-02-27 10:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "audit_id",
+  "previous_registration",
+  "change_timestamp",
+  "reason"
+ ],
+ "fields": [
+  {
+   "fieldname": "audit_id",
+   "fieldtype": "Data",
+   "label": "Audit ID",
+   "reqd": 1,
+   "unique": 1,
+   "in_list_view": 1,
+   "description": "Unique identifier for the audit record."
+  },
+  {
+   "fieldname": "previous_registration",
+   "fieldtype": "Data",
+   "label": "Previous Registration Plate",
+   "reqd": 1,
+   "in_list_view": 1,
+   "description": "The previous registration number."
+  },
+  {
+   "fieldname": "change_timestamp",
+   "fieldtype": "Datetime",
+   "label": "Change Timestamp",
+   "reqd": 1,
+   "in_list_view": 1,
+   "description": "Date & time when the registration change occurred."
+  },
+  {
+   "fieldname": "reason",
+   "fieldtype": "Text",
+   "label": "Reason",
+   "in_list_view": 1,
+   "description": "Reason provided for the registration plate change."
+  }
+ ],
+ "istable": 1,
+ "modified": "2024-02-27 10:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Public Transport",
+ "name": "Bus Registration Audit",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

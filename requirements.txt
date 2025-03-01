@@ -1,0 +1,26 @@
+frappe
+pypdf
+html2text
+python-dateutil
+Jinja2
+markdown2
+email_reply_parser
+redis>=5.0.0
+requests>=2.31.0
+urllib3
+chardet
+certifi
+oauthlib
+requests-oauthlib
+pyOpenSSL
+ndg-httpsclient
+pyasn1
+click
+GitPython
+typing_extensions
+geopy>=2.4.1
+googlemaps>=4.10.0  # For maps integration
+pillow  # For ticket generation
+qrcode  # For QR code on tickets
+pycryptodome  # For secure payment handling
+firebase-admin>=6.3.0

@@ -1,0 +1,86 @@
+{
+ "name": "Route",
+ "owner": "Administrator",
+ "creation": "2024-02-27 10:00:00.000000",
+ "modified": "2024-02-27 10:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Public Transport",
+ "autoname": "ROUTE-.####",
+ "doctype": "DocType",
+ "fields": [
+  {
+   "fieldname": "route_name",
+   "fieldtype": "Data",
+   "label": "Route Name",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "in_global_search": 1
+  },
+  {
+   "fieldname": "route_number",
+   "fieldtype": "Data",
+   "label": "Route Number",
+   "reqd": 1,
+   "unique": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "stops",
+   "fieldtype": "Table",
+   "label": "Route Stops",
+   "options": "Route Stop",
+   "reqd": 1
+  },
+  {
+   "fieldname": "distance",
+   "fieldtype": "Float",
+   "label": "Total Distance (km)",
+   "read_only": 1,
+   "precision": 2
+  },
+  {
+   "fieldname": "estimated_time",
+   "fieldtype": "Int",
+   "label": "Estimated Time (minutes)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "is_circular",
+   "fieldtype": "Check",
+   "label": "Is Circular Route",
+   "default": 0
+  },
+  {
+   "fieldname": "route_type",
+   "fieldtype": "Select",
+   "label": "Route Type",
+   "options": "Urban\nSuburban\nHighway\nExpress",
+   "reqd": 1
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Active\nTemporarily Closed\nInactive",
+   "default": "Active",
+   "reqd": 1
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1
+  },
+  {
+   "role": "Bus Operator",
+   "read": 1,
+   "write": 1,
+   "create": 1
+  }
+ ]
+}

@@ -1,0 +1,106 @@
+{
+ "name": "Notification Analytics Report",
+ "owner": "Administrator",
+ "creation": "2024-02-27 10:00:00.000000",
+ "modified": "2024-02-27 10:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Public Transport",
+ "doctype": "DocType",
+ "fields": [
+  {
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "label": "Report Date",
+   "reqd": 1,
+   "unique": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "metrics_section",
+   "fieldtype": "Section Break",
+   "label": "Overall Metrics"
+  },
+  {
+   "fieldname": "total_notifications_sent",
+   "fieldtype": "Int",
+   "label": "Total Notifications Sent",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "total_notifications_delivered",
+   "fieldtype": "Int",
+   "label": "Total Notifications Delivered",
+   "reqd": 1
+  },
+  {
+   "fieldname": "total_notifications_opened",
+   "fieldtype": "Int",
+   "label": "Total Notifications Opened",
+   "reqd": 1
+  },
+  {
+   "fieldname": "total_actions_taken",
+   "fieldtype": "Int",
+   "label": "Total Actions Taken",
+   "reqd": 1
+  },
+  {
+   "fieldname": "channel_metrics_section",
+   "fieldtype": "Section Break",
+   "label": "Channel Metrics"
+  },
+  {
+   "fieldname": "channel_effectiveness",
+   "fieldtype": "Code",
+   "label": "Channel Effectiveness",
+   "reqd": 1,
+   "description": "JSON data containing delivery and open rates by channel",
+   "options": "JSON"
+  },
+  {
+   "fieldname": "engagement_metrics_section",
+   "fieldtype": "Section Break",
+   "label": "Engagement Metrics"
+  },
+  {
+   "fieldname": "alert_type_engagement",
+   "fieldtype": "Code",
+   "label": "Alert Type Engagement",
+   "reqd": 1,
+   "description": "JSON data containing engagement metrics by alert type",
+   "options": "JSON"
+  },
+  {
+   "fieldname": "delivery_rate",
+   "fieldtype": "Percent",
+   "label": "Overall Delivery Rate",
+   "read_only": 1
+  },
+  {
+   "fieldname": "open_rate",
+   "fieldtype": "Percent",
+   "label": "Overall Open Rate",
+   "read_only": 1
+  },
+  {
+   "fieldname": "action_rate",
+   "fieldtype": "Percent",
+   "label": "Overall Action Rate",
+   "read_only": 1
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1
+  },
+  {
+   "role": "Analytics Manager",
+   "read": 1
+  }
+ ]
+}

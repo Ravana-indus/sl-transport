@@ -1,0 +1,269 @@
+{% extends "templates/web.html" %}
+
+{% block page_content %}
+<div class="service-alerts-container">
+    <h1>Service Alerts</h1>
+    
+    <div class="alerts-filter">
+        <div class="btn-group" role="group">
+            <button class="btn btn-default active" data-filter="all">All</button>
+            <button class="btn btn-danger" data-filter="Critical">Critical</button>
+            <button class="btn btn-warning" data-filter="High">High</button>
+            <button class="btn btn-info" data-filter="Medium">Medium</button>
+            <button class="btn btn-success" data-filter="Low">Low</button>
+        </div>
+    </div>
+
+    <div id="alerts-container">
+        {% for severity, alerts in alerts_by_severity.items() %}
+            {% if alerts %}
+                <div class="severity-group" data-severity="{{ severity }}">
+                    <h3 class="severity-header severity-{{ severity.lower() }}">
+                        {{ severity }} Alerts
+                        <span class="badge">{{ alerts|length }}</span>
+                    </h3>
+                    
+                    {% for alert in alerts %}
+                        <div class="alert-card" data-alert-id="{{ alert.name }}">
+                            <div class="alert-header">
+                                <span class="alert-type">{{ alert.alert_type }}</span>
+                                <span class="alert-time">
+                                    {{ alert.start_time.strftime('%H:%M') }} - 
+                                    {{ alert.end_time.strftime('%H:%M') }}
+                                </span>
+                            </div>
+                            
+                            <div class="alert-body">
+                                <p class="alert-message">{{ alert.alert_message }}</p>
+                                
+                                {% if alert.affected_areas %}
+                                    <div class="affected-areas">
+                                        <strong>Affected Areas:</strong>
+                                        <p>{{ alert.affected_areas }}</p>
+                                    </div>
+                                {% endif %}
+                                
+                                {% if alert.routes %}
+                                    <div class="affected-routes">
+                                        <strong>Affected Routes:</strong>
+                                        <ul>
+                                            {% for route in alert.routes %}
+                                                <li>{{ route.route_number }} - {{ route.route_name }}</li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                {% endif %}
+                                
+                                {% if alert.action_required %}
+                                    <div class="action-required">
+                                        <strong>Action Required:</strong>
+                                        <p>{{ alert.action_required }}</p>
+                                    </div>
+                                {% endif %}
+                            </div>
+                            
+                            <div class="alert-footer">
+                                <button class="btn btn-sm btn-default toggle-notifications" 
+                                        data-alert="{{ alert.name }}">
+                                    Subscribe to Updates
+                                </button>
+                                <button class="btn btn-sm btn-default share-alert"
+                                        data-alert="{{ alert.name }}">
+                                    Share
+                                </button>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+{% block style %}
+<style>
+.service-alerts-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.alerts-filter {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.severity-header {
+    padding: 10px;
+    border-radius: 4px;
+    margin: 20px 0 10px;
+}
+
+.severity-critical { background-color: #ffebee; color: #c62828; }
+.severity-high { background-color: #fff3e0; color: #ef6c00; }
+.severity-medium { background-color: #fff8e1; color: #f9a825; }
+.severity-low { background-color: #e8f5e9; color: #2e7d32; }
+
+.alert-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 15px;
+    overflow: hidden;
+}
+
+.alert-header {
+    padding: 15px;
+    background: #f5f5f5;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.alert-body {
+    padding: 15px;
+}
+
+.alert-footer {
+    padding: 10px 15px;
+    background: #fafafa;
+    border-top: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+}
+
+.affected-areas, .affected-routes, .action-required {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+}
+
+.affected-routes ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 5px 0;
+}
+
+.alert-time {
+    font-size: 0.9em;
+    color: #666;
+}
+
+@media (max-width: 768px) {
+    .alert-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .alert-time {
+        margin-top: 5px;
+    }
+}
+</style>
+{% endblock %}
+
+{% block script %}
+<script>
+frappe.ready(() => {
+    setupFilters();
+    setupNotifications();
+    setupShare();
+    subscribeToUpdates();
+});
+
+function setupFilters() {
+    $('.alerts-filter button').on('click', function() {
+        const filter = $(this).data('filter');
+        
+        // Update active state
+        $('.alerts-filter button').removeClass('active');
+        $(this).addClass('active');
+        
+        // Show/hide alert groups
+        if (filter === 'all') {
+            $('.severity-group').show();
+        } else {
+            $('.severity-group').hide();
+            $(`.severity-group[data-severity="${filter}"]`).show();
+        }
+    });
+}
+
+function setupNotifications() {
+    $('.toggle-notifications').on('click', function() {
+        const alertId = $(this).data('alert');
+        const $btn = $(this);
+        
+        frappe.call({
+            method: 'public_transport.public_transport.api.toggle_alert_subscription',
+            args: { alert_id: alertId },
+            callback: (r) => {
+                if (r.message) {
+                    $btn.toggleClass('btn-default btn-primary');
+                    $btn.text(r.message.subscribed ? 'Unsubscribe' : 'Subscribe to Updates');
+                }
+            }
+        });
+    });
+}
+
+function setupShare() {
+    $('.share-alert').on('click', function() {
+        const alertId = $(this).data('alert');
+        
+        // Use Web Share API if available
+        if (navigator.share) {
+            frappe.call({
+                method: 'public_transport.public_transport.api.get_alert_share_data',
+                args: { alert_id: alertId },
+                callback: (r) => {
+                    if (r.message) {
+                        navigator.share({
+                            title: r.message.title,
+                            text: r.message.text,
+                            url: r.message.url
+                        });
+                    }
+                }
+            });
+        } else {
+            // Fallback to copy link
+            const alertUrl = window.location.origin + '/service_alerts?alert=' + alertId;
+            navigator.clipboard.writeText(alertUrl).then(() => {
+                frappe.show_alert({
+                    message: 'Link copied to clipboard',
+                    indicator: 'green'
+                });
+            });
+        }
+    });
+}
+
+function subscribeToUpdates() {
+    frappe.realtime.on('service_alert_update', (data) => {
+        if (data.type === 'new') {
+            location.reload();  // Reload for new alerts
+        } else if (data.type === 'update') {
+            updateAlertCard(data.alert);
+        } else if (data.type === 'resolve') {
+            $(`.alert-card[data-alert-id="${data.alert_id}"]`).fadeOut();
+        }
+    });
+}
+
+function updateAlertCard(alert) {
+    const $card = $(`.alert-card[data-alert-id="${alert.name}"]`);
+    if ($card.length) {
+        $card.find('.alert-message').text(alert.alert_message);
+        $card.find('.alert-time').text(
+            `${alert.start_time} - ${alert.end_time}`
+        );
+        
+        if (alert.action_required) {
+            $card.find('.action-required p').text(alert.action_required);
+        }
+    }
+}
+</script>
+{% endblock %}

@@ -1,0 +1,80 @@
+{
+    "extends": "Public Transport",
+    "for_user": "",
+    "hidden": 0,
+    "icon": "check-square",
+    "idx": 0,
+    "is_default": 0,
+    "is_standard": 1,
+    "label": "Bus Conductor Dashboard",
+    "links": [
+        {
+            "dependencies": "",
+            "hidden": 0,
+            "is_query_report": 0,
+            "label": "Today's Operations",
+            "link_type": "DocType",
+            "onboard": 0,
+            "type": "Card Break"
+        },
+        {
+            "dependencies": "",
+            "hidden": 0,
+            "is_query_report": 0,
+            "label": "Active Trip",
+            "link_to": "Bus Trip",
+            "link_type": "DocType",
+            "onboard": 1,
+            "type": "Link"
+        },
+        {
+            "dependencies": "",
+            "hidden": 0,
+            "is_query_report": 0,
+            "label": "Trip Bookings",
+            "link_to": "Booking",
+            "link_type": "DocType",
+            "onboard": 0,
+            "type": "Link"
+        },
+        {
+            "dependencies": "",
+            "hidden": 0,
+            "is_query_report": 0,
+            "label": "Ticket Management",
+            "link_type": "DocType",
+            "onboard": 0,
+            "type": "Card Break"
+        },
+        {
+            "dependencies": "",
+            "hidden": 0,
+            "is_query_report": 0,
+            "label": "New Booking",
+            "link_to": "Booking",
+            "link_type": "DocType",
+            "onboard": 1,
+            "type": "Link"
+        },
+        {
+            "dependencies": "",
+            "hidden": 0,
+            "is_query_report": 0,
+            "label": "Payment",
+            "link_to": "Payment",
+            "link_type": "DocType",
+            "onboard": 0,
+            "type": "Link"
+        }
+    ],
+    "module": "Public Transport",
+    "name": "Bus Conductor Dashboard",
+    "owner": "Administrator",
+    "parent_page": "",
+    "public": 1,
+    "roles": [
+        {
+            "role": "Bus Conductor"
+        }
+    ]
+}

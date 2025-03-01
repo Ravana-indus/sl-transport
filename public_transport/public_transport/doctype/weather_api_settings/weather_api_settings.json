@@ -1,0 +1,99 @@
+{
+ "name": "Weather API Settings",
+ "owner": "Administrator",
+ "creation": "2024-02-27 10:00:00.000000",
+ "modified": "2024-02-27 10:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Public Transport",
+ "is_single": 1,
+ "doctype": "DocType",
+ "fields": [
+  {
+   "fieldname": "enabled",
+   "fieldtype": "Check",
+   "label": "Enable Weather Alerts",
+   "default": 0
+  },
+  {
+   "fieldname": "provider",
+   "fieldtype": "Select",
+   "label": "Weather Provider",
+   "options": "OpenWeatherMap\nWeatherAPI\nCustom",
+   "default": "OpenWeatherMap",
+   "reqd": 1
+  },
+  {
+   "fieldname": "api_key",
+   "fieldtype": "Password",
+   "label": "API Key",
+   "reqd": 1
+  },
+  {
+   "fieldname": "api_endpoint",
+   "fieldtype": "Data",
+   "label": "API Endpoint",
+   "depends_on": "eval:doc.provider=='Custom'",
+   "mandatory_depends_on": "eval:doc.provider=='Custom'"
+  },
+  {
+   "fieldname": "check_interval",
+   "fieldtype": "Select",
+   "label": "Check Interval",
+   "options": "15 minutes\n30 minutes\n1 hour",
+   "default": "30 minutes",
+   "reqd": 1
+  },
+  {
+   "fieldname": "temperature_thresholds",
+   "fieldtype": "Section Break",
+   "label": "Temperature Thresholds"
+  },
+  {
+   "fieldname": "high_temp_threshold",
+   "fieldtype": "Float",
+   "label": "High Temperature Threshold (°C)",
+   "default": 40,
+   "reqd": 1
+  },
+  {
+   "fieldname": "low_temp_threshold",
+   "fieldtype": "Float",
+   "label": "Low Temperature Threshold (°C)",
+   "default": 0,
+   "reqd": 1
+  },
+  {
+   "fieldname": "wind_thresholds",
+   "fieldtype": "Section Break",
+   "label": "Wind Thresholds"
+  },
+  {
+   "fieldname": "high_wind_threshold",
+   "fieldtype": "Float",
+   "label": "High Wind Threshold (m/s)",
+   "default": 20,
+   "reqd": 1
+  },
+  {
+   "fieldname": "alert_settings",
+   "fieldtype": "Section Break",
+   "label": "Alert Settings"
+  },
+  {
+   "fieldname": "default_duration",
+   "fieldtype": "Int",
+   "label": "Default Alert Duration (hours)",
+   "default": 6,
+   "reqd": 1
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1
+  }
+ ]
+}
