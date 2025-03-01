@@ -3,6 +3,28 @@ from frappe.utils import now_datetime, add_to_date
 import requests
 from geopy.distance import geodesic
 
+
+def get_weather_data(api_key, coordinates):
+    """Get weather data for given coordinates"""
+    weather_data = []
+    
+    for lat, lon in coordinates:
+        response = requests.get(
+            f"https://api.openweathermap.org/data/2.5/weather",
+            params={
+                "lat": lat,
+                "lon": lon,
+                "appid": api_key,
+                "units": "metric"
+            }
+        )
+        
+        if response.status_code == 200:
+            weather_data.append(response.json())
+            
+    return weather_data
+
+
 def check_weather_conditions():
     """Check weather conditions and create alerts if needed"""
     try:
@@ -41,26 +63,9 @@ def check_weather_conditions():
             
             if should_create_weather_alert(weather_data):
                 create_weather_alert(route, weather_data)
+    except Exception as e:
+        frappe.log_error(f"Error checking weather conditions: {str(e)}", "Weather Alert Error")
 
-def get_weather_data(api_key, coordinates):
-    """Get weather data for given coordinates"""
-    weather_data = []
-    
-    for lat, lon in coordinates:
-        response = requests.get(
-            f"https://api.openweathermap.org/data/2.5/weather",
-            params={
-                "lat": lat,
-                "lon": lon,
-                "appid": api_key,
-                "units": "metric"
-            }
-        )
-        
-        if response.status_code == 200:
-            weather_data.append(response.json())
-            
-    return weather_data
 
 def should_create_weather_alert(weather_data):
     """Determine if weather conditions warrant an alert"""
@@ -89,6 +94,7 @@ def should_create_weather_alert(weather_data):
             return True
             
     return False
+
 
 def create_weather_alert(route, weather_data):
     """Create a weather-based service alert"""
@@ -122,6 +128,7 @@ def create_weather_alert(route, weather_data):
     alert.insert()
     alert.submit()
 
+
 def get_weather_severity(weather_data):
     """Determine alert severity based on weather conditions"""
     for data in weather_data:
@@ -150,6 +157,7 @@ def get_weather_severity(weather_data):
             return "Medium"
     
     return "Low"
+
 
 def check_traffic_incidents():
     """Check for traffic incidents and create alerts"""
@@ -200,6 +208,9 @@ def check_traffic_incidents():
             # If average speed is very low, create traffic alert
             if avg_speed < 10:  # km/h
                 create_traffic_alert(trip, avg_speed)
+    except Exception as e:
+        frappe.log_error(f"Error checking traffic incidents: {str(e)}", "Traffic Alert Error")
+
 
 def create_traffic_alert(trip, speed):
     """Create a traffic-based service alert"""
